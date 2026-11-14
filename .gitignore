@@ -1,0 +1,23 @@
+# data (not tracked, folders stay)
+data/raw/*
+data/warehouse/*
+!data/raw/.gitkeep
+!data/warehouse/.gitkeep
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# misc
+.DS_Store
+.env
+*.duckdb
+*.duckdb.wal
