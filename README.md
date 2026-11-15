@@ -1,12 +1,25 @@
-# NYC Taxi Data Platform
+# Chess Data Platform
 
-Work in progress. An end-to-end incremental batch pipeline over NYC TLC
-yellow taxi data. Raw monthly files are ingested idempotently, validated
-with automated data-quality rules, and bad records are quarantined instead
-of dropped. Planned stack: Python, SQL, DuckDB, dbt, Airflow, Docker,
-GitHub Actions.
+An end-to-end data pipeline built on Lichess monthly game files.
 
-## Why this project
-Monthly public data arrives dirty and its schema can change. This project
-guarantees that every raw row ends up either in a clean table or in a
-quarantine table with the reason it was rejected.
+**Status: work in progress.**
+
+## The problem
+Lichess publishes every rated game as one large monthly PGN file. The files
+are not cumulative, some fields are missing or unknown, and a monthly file
+can contain games dated in the previous month. This project loads these
+files into a warehouse in a repeatable way, keeps bad rows in a quarantine
+table with the reason, and builds analytics tables on top.
+
+## What it will show
+- Idempotent loading: running the same file twice gives the same result
+- Schema drift detection when new header fields appear
+- Data quality rules with a quarantine table
+- Incremental loads, backfill, and anomaly detection on daily game counts
+
+## Data
+Lichess open database, 2015 monthly files (CC0). Older files are used because
+recent monthly files are too large for a laptop.
+
+## Stack
+Python, DuckDB, dbt, Airflow, GitHub Actions.
