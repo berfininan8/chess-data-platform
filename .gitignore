@@ -23,4 +23,4 @@ dbt_project/logs/
 *.duckdb.wal
 
 archive/taxi/data/
-archive/taxi/data/
+
