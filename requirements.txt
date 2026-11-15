@@ -2,3 +2,5 @@ duckdb
 pyarrow
 pytest
 ruff
+zstandard
+chess
